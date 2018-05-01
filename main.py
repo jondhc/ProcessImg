@@ -2,6 +2,18 @@ import numpy
 import cv2
 from matplotlib import pyplot
 
+
+image = cv2.imread('animal.jpg')
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+cv2.imwrite("gray_image.png", gray_image)
+cv2.imshow('color_image',image)
+cv2.imshow('gray_image',gray_image)
+cv2.waitKey(0)                 # Waits forever for user to press any key
+cv2.destroyAllWindows()
+new_img = Image.open('kids.jpg')
+grayscale(new_img)
+new_img.show()
+
 bgrKids = cv2.imread('kids.jpg', -1) # Read image [0], [1] flag -1 is used to load it unchanged. Loaded in BGR.
 bgrAnimal = cv2.imread('animal.jpg', -1)
 bgrCity = cv2.imread('city.jpg', -1)
