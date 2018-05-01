@@ -110,6 +110,7 @@ def recognition(image):
         eyes = eye_cascade.detectMultiScale(roi_gray)
         for (ex, ey, ew, eh) in eyes:
             cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 0, 255), 2)
+    cv2.namedWindow('img', cv2.WINDOW_NORMAL)  # Set new window [0], with flags [1]
     cv2.imshow('img', img)
     cv2.waitKey(0)
 
