@@ -106,6 +106,6 @@ blurring(rgbImage)
 gaussianBlurring(rgbImage)
 medianBlur(rgbImage)
 bilateralFiltering(rgbImage)
-laplacian(rgbImage)
+laplacian(rgbImage) # B&W photo needs to be passed.
 ########################################################f
 
