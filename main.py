@@ -90,12 +90,10 @@ def horizontalSobel(image):
 
 def canny(image):
     edges = cv2.Canny(image, 100, 200)
-
     pyplot.subplot(121), pyplot.imshow(image, cmap='gray')
     pyplot.title('Original Image'), pyplot.xticks([]), pyplot.yticks([])
     pyplot.subplot(122), pyplot.imshow(edges, cmap='gray')
     pyplot.title('Edge Image'), pyplot.xticks([]), pyplot.yticks([])
-
     pyplot.show()
 ########################################################f
 
