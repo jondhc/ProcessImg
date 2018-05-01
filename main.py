@@ -59,6 +59,20 @@ def bilateralFiltering(image):
     pyplot.xticks([]), pyplot.yticks([])
     pyplot.show()
 
+def laplacian(image):
+    laplacian = cv2.Laplacian(image, cv2.CV_64F)
+    sobelx = cv2.Sobel(image, cv2.CV_64F, 1, 0, ksize=5)
+    sobely = cv2.Sobel(image, cv2.CV_64F, 0, 1, ksize=5)
+    pyplot.subplot(2, 2, 1), pyplot.imshow(image, cmap='gray')
+    pyplot.title('Original'), pyplot.xticks([]), pyplot.yticks([])
+    pyplot.subplot(2, 2, 2), pyplot.imshow(laplacian, cmap='gray')
+    pyplot.title('Laplacian'), pyplot.xticks([]), pyplot.yticks([])
+    pyplot.subplot(2, 2, 3), pyplot.imshow(sobelx, cmap='gray')
+    pyplot.title('Sobel X'), pyplot.xticks([]), pyplot.yticks([])
+    pyplot.subplot(2, 2, 4), pyplot.imshow(sobely, cmap='gray')
+    pyplot.title('Sobel Y'), pyplot.xticks([]), pyplot.yticks([])
+    pyplot.show()
+
 ########################################################f
 
 bgrKids = cv2.imread('kids.jpg', -1) # Read image [0], [1] flag -1 is used to load it unchanged. Loaded in BGR.
@@ -92,5 +106,6 @@ blurring(rgbImage)
 gaussianBlurring(rgbImage)
 medianBlur(rgbImage)
 bilateralFiltering(rgbImage)
+laplacian(rgbImage)
 ########################################################f
 
