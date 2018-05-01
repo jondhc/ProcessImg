@@ -96,6 +96,24 @@ def canny(image):
     pyplot.subplot(122), pyplot.imshow(edges, cmap='gray')
     pyplot.title('Edge Image'), pyplot.xticks([]), pyplot.yticks([])
     pyplot.show()
+
+def recognition(image):
+    face_cascade = cv2.CascadeClassifier('/Users/jondhc/Documents/Python/Image_processing/venv/lib/python3.6/site-packages/cv2/data/haarcascade_frontalface_default.xml')
+    eye_cascade = cv2.CascadeClassifier('/Users/jondhc/Documents/Python/Image_processing/venv/lib/python3.6/site-packages/cv2/data/haarcascade_eye.xml')
+    img = image
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+    for (x, y, w, h) in faces:
+        img = cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
+        roi_gray = gray[y:y + h, x:x + w]
+        roi_color = img[y:y + h, x:x + w]
+        eyes = eye_cascade.detectMultiScale(roi_gray)
+        for (ex, ey, ew, eh) in eyes:
+            cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 0, 255), 2)
+    cv2.imshow('img', img)
+    cv2.waitKey(0)
+
+
 ########################################################f
 
 bgrKids = cv2.imread('kids.jpg', -1) # Read image [0], [1] flag -1 is used to load it unchanged. Loaded in BGR.
@@ -106,7 +124,7 @@ bgrNature = cv2.imread('nature.jpg', -1)
 bgrPortrait = cv2.imread('portrait.jpg', -1)
 bgrReef = cv2.imread('reef.jpg', -1)
 
-bgrImage = bgrKids
+bgrImage = bgrPortrait
 
 b,g,r = cv2.split(bgrImage) # Split bgr image
 rgbImage = cv2.merge([r,g,b]) # Merge using rgb order
@@ -143,5 +161,6 @@ bilateralFiltering(rgbImage)
 laplacian(bnwImage) # B&W photo needs to be passed.
 horizontalSobel(bnwImage) # B&W photo needs to be passed.
 canny(bnwImage) # B&W photo needs to be passed.
+recognition(bgrImage)
 ########################################################f
 
