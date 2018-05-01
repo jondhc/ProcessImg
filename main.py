@@ -73,6 +73,30 @@ def laplacian(image):
     pyplot.title('Sobel Y'), pyplot.xticks([]), pyplot.yticks([])
     pyplot.show()
 
+def horizontalSobel(image):
+    # Output dtype = cv2.CV_8U
+    sobelx8u = cv2.Sobel(image, cv2.CV_8U, 1, 0, ksize=5)
+    # Output dtype = cv2.CV_64F. Then take its absolute and convert to cv2.CV_8U
+    sobelx64f = cv2.Sobel(image, cv2.CV_64F, 1, 0, ksize=5)
+    abs_sobel64f = numpy.absolute(sobelx64f)
+    sobel_8u = numpy.uint8(abs_sobel64f)
+    pyplot.subplot(1, 3, 1), pyplot.imshow(image, cmap='gray')
+    pyplot.title('Original'), pyplot.xticks([]), pyplot.yticks([])
+    pyplot.subplot(1, 3, 2), pyplot.imshow(sobelx8u, cmap='gray')
+    pyplot.title('Sobel CV_8U'), pyplot.xticks([]), pyplot.yticks([])
+    pyplot.subplot(1, 3, 3), pyplot.imshow(sobel_8u, cmap='gray')
+    pyplot.title('Sobel abs(CV_64F)'), pyplot.xticks([]), pyplot.yticks([])
+    pyplot.show()
+
+def canny(image):
+    edges = cv2.Canny(image, 100, 200)
+
+    pyplot.subplot(121), pyplot.imshow(image, cmap='gray')
+    pyplot.title('Original Image'), pyplot.xticks([]), pyplot.yticks([])
+    pyplot.subplot(122), pyplot.imshow(edges, cmap='gray')
+    pyplot.title('Edge Image'), pyplot.xticks([]), pyplot.yticks([])
+
+    pyplot.show()
 ########################################################f
 
 bgrKids = cv2.imread('kids.jpg', -1) # Read image [0], [1] flag -1 is used to load it unchanged. Loaded in BGR.
@@ -107,5 +131,7 @@ gaussianBlurring(rgbImage)
 medianBlur(rgbImage)
 bilateralFiltering(rgbImage)
 laplacian(rgbImage) # B&W photo needs to be passed.
+horizontalSobel(rgbImage) # B&W photo needs to be passed.
+canny(rgbImage) # B&W photo needs to be passed.
 ########################################################f
 
