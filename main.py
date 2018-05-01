@@ -106,7 +106,7 @@ bgrNature = cv2.imread('nature.jpg', -1)
 bgrPortrait = cv2.imread('portrait.jpg', -1)
 bgrReef = cv2.imread('reef.jpg', -1)
 
-bgrImage = bgrPortrait
+bgrImage = bgrKids
 
 b,g,r = cv2.split(bgrImage) # Split bgr image
 rgbImage = cv2.merge([r,g,b]) # Merge using rgb order
@@ -124,13 +124,24 @@ pyplot.show() # Display figure
 
 
 ########################################################i
+bnwKids = cv2.imread('kids.jpg', 0) # Read image [0], [1] flag -1 is used to load it unchanged. Loaded in BGR.
+bnwAnimal = cv2.imread('animal.jpg', 0)
+bnwCity = cv2.imread('city.jpg', 0)
+bnwLandscape = cv2.imread('landscape.jpg', 0)
+bnwNature = cv2.imread('nature.jpg', 0)
+bnwPortrait = cv2.imread('portrait.jpg', 0)
+bnwReef = cv2.imread('reef.jpg', 0)
+
+bnwImage = bnwKids
+
+
 averaging(rgbImage)
 blurring(rgbImage)
 gaussianBlurring(rgbImage)
 medianBlur(rgbImage)
 bilateralFiltering(rgbImage)
-laplacian(rgbImage) # B&W photo needs to be passed.
-horizontalSobel(rgbImage) # B&W photo needs to be passed.
-canny(rgbImage) # B&W photo needs to be passed.
+laplacian(bnwImage) # B&W photo needs to be passed.
+horizontalSobel(bnwImage) # B&W photo needs to be passed.
+canny(bnwImage) # B&W photo needs to be passed.
 ########################################################f
 
