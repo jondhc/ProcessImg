@@ -60,6 +60,7 @@ def bilateralFiltering(image):
     pyplot.show()
 
 def laplacian(image):
+    print("Laplacian applied")
     laplacian = cv2.Laplacian(image, cv2.CV_64F)
     sobelx = cv2.Sobel(image, cv2.CV_64F, 1, 0, ksize=5)
     sobely = cv2.Sobel(image, cv2.CV_64F, 0, 1, ksize=5)
@@ -74,9 +75,8 @@ def laplacian(image):
     pyplot.show()
 
 def horizontalSobel(image):
-    # Output dtype = cv2.CV_8U
+    print("Horizontal sobel applied")
     sobelx8u = cv2.Sobel(image, cv2.CV_8U, 1, 0, ksize=5)
-    # Output dtype = cv2.CV_64F. Then take its absolute and convert to cv2.CV_8U
     sobelx64f = cv2.Sobel(image, cv2.CV_64F, 1, 0, ksize=5)
     abs_sobel64f = numpy.absolute(sobelx64f)
     sobel_8u = numpy.uint8(abs_sobel64f)
@@ -89,6 +89,7 @@ def horizontalSobel(image):
     pyplot.show()
 
 def canny(image):
+    print("Canny algorithm applied")
     edges = cv2.Canny(image, 100, 200)
     pyplot.subplot(121), pyplot.imshow(image, cmap='gray')
     pyplot.title('Original Image'), pyplot.xticks([]), pyplot.yticks([])
