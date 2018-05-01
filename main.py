@@ -31,6 +31,15 @@ def blurring(image):
     pyplot.subplot(122), pyplot.imshow(blur), pyplot.title('Blurred')
     pyplot.xticks([]), pyplot.yticks([])
     pyplot.show()
+
+def gaussianBlurring(image):
+    print("Gaussian Blurring applied")
+    blur = cv2.GaussianBlur(image, (5, 5), 0)
+    pyplot.subplot(121), pyplot.imshow(image), pyplot.title('Original')
+    pyplot.xticks([]), pyplot.yticks([])
+    pyplot.subplot(122), pyplot.imshow(blur), pyplot.title('Gaussian Blurred')
+    pyplot.xticks([]), pyplot.yticks([])
+    pyplot.show()
 ########################################################f
 
 bgrKids = cv2.imread('kids.jpg', -1) # Read image [0], [1] flag -1 is used to load it unchanged. Loaded in BGR.
@@ -48,7 +57,7 @@ rgbImage = cv2.merge([r,g,b]) # Merge using rgb order
 
 
 cv2.namedWindow('image', cv2.WINDOW_NORMAL) # Set new window [0], with flags [1]
-cv2.imshow('image', bgrImage) # Show [1] image in a [0] window
+#cv2.imshow('image', bgrImage) # Show [1] image in a [0] window
 # cv2.waitKey(0) # Wait [0] miliseconds for a keyboard event for the program to continue
 cv2.destroyAllWindows() # Destroy created windows
 
@@ -61,5 +70,6 @@ pyplot.show() # Display figure
 ########################################################i
 averaging(rgbImage)
 blurring(rgbImage)
+gaussianBlurring(rgbImage)
 ########################################################f
 
