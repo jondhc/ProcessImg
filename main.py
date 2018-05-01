@@ -40,6 +40,25 @@ def gaussianBlurring(image):
     pyplot.subplot(122), pyplot.imshow(blur), pyplot.title('Gaussian Blurred')
     pyplot.xticks([]), pyplot.yticks([])
     pyplot.show()
+
+def medianBlur(image):
+    print("Median Blurring applied")
+    blur = cv2.medianBlur(image, 5)
+    pyplot.subplot(121), pyplot.imshow(image), pyplot.title('Original')
+    pyplot.xticks([]), pyplot.yticks([])
+    pyplot.subplot(122), pyplot.imshow(blur), pyplot.title('Median Blurred')
+    pyplot.xticks([]), pyplot.yticks([])
+    pyplot.show()
+
+def bilateralFiltering(image):
+    print("Bilateral Filtering applied")
+    blur = cv2.bilateralFilter(image, 9, 75, 75)
+    pyplot.subplot(121), pyplot.imshow(image), pyplot.title('Original')
+    pyplot.xticks([]), pyplot.yticks([])
+    pyplot.subplot(122), pyplot.imshow(blur), pyplot.title('Bilateral Filtering')
+    pyplot.xticks([]), pyplot.yticks([])
+    pyplot.show()
+
 ########################################################f
 
 bgrKids = cv2.imread('kids.jpg', -1) # Read image [0], [1] flag -1 is used to load it unchanged. Loaded in BGR.
@@ -71,5 +90,7 @@ pyplot.show() # Display figure
 averaging(rgbImage)
 blurring(rgbImage)
 gaussianBlurring(rgbImage)
+medianBlur(rgbImage)
+bilateralFiltering(rgbImage)
 ########################################################f
 
