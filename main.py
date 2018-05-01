@@ -13,13 +13,22 @@ from matplotlib import pyplot
 
 ########################################################i
 def averaging(image):
-    print("Low-pass filter being applied")
+    print("Averaging applied")
     kernel = numpy.ones((5, 5), numpy.float32) / 25
     dst = cv2.filter2D(image, -1, kernel)
 
     pyplot.subplot(121), pyplot.imshow(image), pyplot.title('Original')
     pyplot.xticks([]), pyplot.yticks([])
     pyplot.subplot(122), pyplot.imshow(dst), pyplot.title('Averaging')
+    pyplot.xticks([]), pyplot.yticks([])
+    pyplot.show()
+
+def blurring(image):
+    print("Blurring applied")
+    blur = cv2.blur(image, (20, 20))
+    pyplot.subplot(121), pyplot.imshow(image), pyplot.title('Original')
+    pyplot.xticks([]), pyplot.yticks([])
+    pyplot.subplot(122), pyplot.imshow(blur), pyplot.title('Blurred')
     pyplot.xticks([]), pyplot.yticks([])
     pyplot.show()
 ########################################################f
@@ -40,7 +49,7 @@ rgbImage = cv2.merge([r,g,b]) # Merge using rgb order
 
 cv2.namedWindow('image', cv2.WINDOW_NORMAL) # Set new window [0], with flags [1]
 cv2.imshow('image', bgrImage) # Show [1] image in a [0] window
-cv2.waitKey(0) # Wait [0] miliseconds for a keyboard event for the program to continue
+# cv2.waitKey(0) # Wait [0] miliseconds for a keyboard event for the program to continue
 cv2.destroyAllWindows() # Destroy created windows
 
 cv2.imwrite('result.jpg', bgrImage) # Save [1] image in the working directory with specified name [0]
@@ -51,5 +60,6 @@ pyplot.show() # Display figure
 
 ########################################################i
 averaging(rgbImage)
+blurring(rgbImage)
 ########################################################f
 
