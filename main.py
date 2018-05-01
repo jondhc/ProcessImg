@@ -15,9 +15,9 @@ def imageSubstraction(img1, img2):
     img3 = cv2.subtract(img1,img2)
     return img3
 
-def imageRotaton(img, ):
+def imageRotaton(img, degrees):
     rows, cols = img.shape
-    M = cv2.getRotationMatrix2D((cols / 2, rows / 2), 180, 1)
+    M = cv2.getRotationMatrix2D((cols / 2, rows / 2), degrees, 1)
     dst = cv2.warpAffine(img, M, (cols, rows))
     return dst
 #------------------------------------Load Images------------------------------------
@@ -38,7 +38,7 @@ res2 = imageSubstraction(bgrAnimal, bgrCity)
 
 res3 = imageConvolution(bgrAnimal)
 
-res4 = imageRotaton(bgrAnimal)
+res4 = imageRotaton(bgrJaja, 75)
 
 cv2.namedWindow('image', cv2.WINDOW_NORMAL) # Set new window [0], with flags [1]
 cv2.imshow('image', res) # Show [1] image in a [0] window
