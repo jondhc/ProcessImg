@@ -37,9 +37,10 @@ def circleDetecion(img, img2):
             cv2.circle(img,(i[0], i[1]), i[2], (0,255,0), 2)
             cv2.circle(img2, (i[0], i[1]), 2, (0, 0, 255), 3)
             cv2.circle(img,(i[0], i[1]), i[2], (0,255,0), 2)
+        return img2, circles
 
     #cv2.imshow('detected circles', img)
-    return img2, circles
+    print("sin circulos")
 
 def thresholdBinary (img):
     # Pasar una imagen a escala de grises
@@ -73,12 +74,12 @@ def colorDetection(img, circle):
             print(j)
             print(distanceS)
             if distanceS < radius:
-                if np.all(img[i][j] != 0) or np.all(img[i][j]) != 255:
-                    r,g,b = img[i][j]
+                if np.all(img[i][j] > 100):
+                    b,g,r = img[i][j]
                     lista.append([r,g,b])
-                    total[0] = total[0] + r
+                    total[0] = total[0] + b
                     total[1] = total[1] + g
-                    total[2] = total[2] + b
+                    total[2] = total[2] + r
 
                     count = count + 1
     total[0] = total[0] / count
@@ -108,7 +109,7 @@ bgrReef = cv2.imread('reef.jpg',0)
 bgrOjo = cv2.imread('ojo.jpg',-1)
 bgrOjo2 = cv2.imread('ojo2.jpg',-1)
 bgrOjo3 = cv2.imread('ojo3.jpg',-1)
-bgrOjo4 = cv2.imread('ojo4.jpg', -1)
+bgrOjo4 = cv2.imread('ojo5.jpg', -1)
 
 
 """res = imageAdition(bgrAnimal, bgrCity)
@@ -129,12 +130,18 @@ instanteInicial = datetime.now()
 print("Iniciando")
 
 
-res1_1 = thresholdBinary(bgrOjo)
-res1_2, data1= circleDetecion(res1_1, bgrOjo)
+res1_1 = thresholdBinary(bgrOjo4)
+res1_2, data1= circleDetecion(res1_1, bgrOjo4)
 cv2.namedWindow('ojo1', cv2.WINDOW_NORMAL)
 cv2.imshow('ojo1', res1_2)
-colorDetection(bgrOjo,data1)
 print (data1)
+for i in range (0,7):
+    x = data1[0][i][0]
+    y = data1[0][i][1]
+    if (np.all(bgrOjo4[x][y] <= 50) and (x >= 200 and y >= 200) and (x<=400 and y <= 400)):
+        colorDetection(bgrOjo4,data1)
+        print (i)
+        print(data1)
 """res2_1 = thresholdBinary(bgrOjo2)
 res2_2, data2 = circleDetecion(res2_1, bgrOjo2)
 cv2.namedWindow('ojo2', cv2.WINDOW_NORMAL)
