@@ -109,7 +109,7 @@ bgrReef = cv2.imread('reef.jpg',0)
 bgrOjo = cv2.imread('ojo.jpg',-1)
 bgrOjo2 = cv2.imread('ojo2.jpg',-1)
 bgrOjo3 = cv2.imread('ojo3.jpg',-1)
-bgrOjo4 = cv2.imread('ojo5.jpg', -1)
+bgrOjo4 = cv2.imread('ojos6.jpg', -1)
 
 
 """res = imageAdition(bgrAnimal, bgrCity)
@@ -135,13 +135,8 @@ res1_2, data1= circleDetecion(res1_1, bgrOjo4)
 cv2.namedWindow('ojo1', cv2.WINDOW_NORMAL)
 cv2.imshow('ojo1', res1_2)
 print (data1)
-for i in range (0,7):
-    x = data1[0][i][0]
-    y = data1[0][i][1]
-    if (np.all(bgrOjo4[x][y] <= 50) and (x >= 200 and y >= 200) and (x<=400 and y <= 400)):
-        colorDetection(bgrOjo4,data1)
-        print (i)
-        print(data1)
+colorDetection(bgrOjo4,data1)
+print(data1)
 """res2_1 = thresholdBinary(bgrOjo2)
 res2_2, data2 = circleDetecion(res2_1, bgrOjo2)
 cv2.namedWindow('ojo2', cv2.WINDOW_NORMAL)
