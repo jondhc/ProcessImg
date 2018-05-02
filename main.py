@@ -1,6 +1,21 @@
 import numpy
 import cv2
 from matplotlib import pyplot
+import numpy as np;
+
+im_in = cv2.imread("animal.jpg", cv2.IMREAD_GRAYSCALE);
+th, im_th = cv2.threshold(im_in, 220, 255, cv2.THRESH_BINARY_INV);
+cv2.imshow("Thresholded Image", im_th)
+cv2.waitKey(0)
+
+image = cv2.imread('animal.jpg')
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+cv2.imwrite("gray_image.png", gray_image)
+cv2.imshow('color_image',image)
+cv2.imshow('gray_image',gray_image)
+cv2.waitKey(0)                 # Waits forever for user to press any key
+cv2.destroyAllWindows()
+
 
 # To apply:
 # Low-pass filter
